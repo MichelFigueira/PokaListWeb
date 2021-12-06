@@ -12,9 +12,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { TasksModule } from './pages/tasks/tasks.module';
 
 
 @NgModule({
+  declarations: [
+    AppComponent,
+    AdminLayoutComponent,
+    AuthLayoutComponent
+  ],
   imports: [
     BrowserAnimationsModule,
     FormsModule,
@@ -22,12 +28,8 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
-  ],
-  declarations: [
-    AppComponent,
-    AdminLayoutComponent,
-    AuthLayoutComponent
+    AppRoutingModule,
+    TasksModule
   ],
   providers: [],
   bootstrap: [AppComponent]
