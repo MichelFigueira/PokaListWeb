@@ -9,9 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
+  name = 'Valeria Figueira'
+
   public focus;
   public listTitles: any[];
   public location: Location;
+
   constructor(location: Location,  private element: ElementRef, private router: Router) {
     this.location = location;
   }
