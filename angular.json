@@ -29,7 +29,9 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/scss/argon.scss"
+              "src/assets/scss/argon.scss",
+              "src/assets/nucleo/css/nucleo.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.min.js",
@@ -62,6 +64,10 @@
             },
             "development": {
              "buildOptimizer": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
              "optimization": {
                 "scripts": true,
                 "styles": {
@@ -69,16 +75,12 @@
                   "inlineCritical": true
                 },
                 "fonts": true
-              },
-             "outputHashing": "all"
+              }
            }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "pokalist-web:build"
-          },
           "configurations": {
             "production": {
               "browserTarget": "pokalist-web:build:production"
