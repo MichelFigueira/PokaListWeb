@@ -59,6 +59,9 @@ $custom-file-text: ();
 @import "~bootstrap/scss/utilities";
 @import "~bootstrap/scss/print";
 
+// Lists
+@import "core/lists/lists";
+
 // Argon utilities and components
 
 @import "custom/reboot";
