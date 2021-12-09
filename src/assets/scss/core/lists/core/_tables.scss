@@ -1,0 +1,36 @@
+.table{
+
+   .form-check{
+       margin-top: 0;
+
+       .form-check-sign{
+           top: -13px;
+           left: 0;
+           padding-right: 0;
+       }
+    }
+
+   .radio,
+   .checkbox{
+       margin-top: 0;
+       margin-bottom: 0;
+       padding: 0;
+       width: 15px;
+
+       .icons{
+           position: relative;
+       }
+   }
+   > thead > tr > th,
+   > tbody > tr > th,
+   > tfoot > tr > th,
+   > thead > tr > td,
+   > tbody > tr > td,
+   > tfoot > tr > td{
+       padding: 12px 8px;
+       vertical-align: middle;
+   }
+
+}
+
+
