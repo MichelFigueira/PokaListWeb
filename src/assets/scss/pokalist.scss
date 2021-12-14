@@ -1,0 +1,62 @@
+.customcheck {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.customcheck input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: rgb(255, 255, 255);
+  border-color: #f5365c;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.customcheck:hover input ~ .checkmark {
+  transition:0.5s;
+  background-color: #f5365c;
+}
+
+.customcheck input:checked ~ .checkmark {
+  height: 25px;
+  width: 25px;
+  background-color: #00ca5b;
+  border-color: #00ca5b;
+  border-radius: 5px;
+  transition:0.5s;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.customcheck input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.customcheck .checkmark:after {
+  left: 6px;
+  top: 1px;
+  width: 10px;
+  height: 15px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+

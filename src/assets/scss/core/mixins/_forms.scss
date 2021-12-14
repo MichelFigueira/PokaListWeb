@@ -101,27 +101,4 @@
       }
     }
   }
-
-  // custom file
-  // .custom-file-input {
-  //   .was-validated &:#{$state},
-  //   &.is-#{$state} {
-  //     ~ .custom-file-label {
-  //       border-color: $color;
-
-  //       &::before { border-color: inherit; }
-  //     }
-
-  //     ~ .#{$state}-feedback,
-  //     ~ .#{$state}-tooltip {
-  //       display: block;
-  //     }
-
-  //     &:focus {
-  //       ~ .custom-file-label {
-  //         box-shadow: 0 0 0 $input-focus-width rgba($color, .25);
-  //       }
-  //     }
-  //   }
-  // }
 }
