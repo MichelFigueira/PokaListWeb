@@ -1,4 +1,3 @@
-import { TableComponent } from './table/table.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -6,10 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
-import { TasksComponent } from './tasks.component';
-import { CardsComponent } from './cards/cards.component';
 import { TasksRoutingModule } from './tasks.routing';
+
+import { TableComponent } from './table/table.component';
+import { CardsComponent } from './cards/cards.component';
+import { TasksComponent } from './tasks.component';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { TasksRoutingModule } from './tasks.routing';
     HttpClientModule,
     NgbModule,
     RouterModule,
-    TasksRoutingModule
+    TasksRoutingModule,
+    LoadingBarHttpClientModule
   ],
   providers: [],
   bootstrap: []

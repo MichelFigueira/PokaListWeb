@@ -2,10 +2,18 @@
   <div class="row">
     <div class="col">
       <div class="card shadow">
-        <div class="card-header border-0">
-          <h3 class="mb-0">Tasks</h3>
+        <div class="card-header mb--4 border-0">
+          <div class="form-group" [ngClass]="{'focused':focus===true}">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+              </div>
+              <input class="form-control" placeholder="Search" type="text" [(ngModel)]="filterList" (focus)="focus=true" (blur)="focus=false">
+            </div>
+          </div>
         </div>
         <div class="table-responsive">
+          <ngx-loading-bar includeBar="false" fixed="false" color="#f5365c" height="3px"></ngx-loading-bar>
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
@@ -17,12 +25,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let poka of pokasFiltered">
                 <th scope="row">
                   <div class="align-items-center mt-2">
                     <label class="customcheck">
-                      Ballon Fly sdafa sdfa sdfads fasd fasd fasd fasd fasd fasd
-                      <input type="checkbox">
+                      {{poka.title}}
+                      <input type="checkbox" (click)="checkPoka()">
                       <span class="checkmark"></span>
                     </label>
                   </div>
@@ -39,120 +47,7 @@
                 </td>
                 <td>
                   <span class="badge badge-dot mr-4 align-items-center">
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row">
-                  <div class="align-items-center mt-2">
-                    <label class="customcheck">
-                      Ballon Fly
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-                </th>
-                <td>
-                  <span class="badge badge-dot mr-4">
-                    <i class="bg-red"></i> pending
-                  </span>
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 align-items-center">
-                    43
-                  </span>
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 align-items-center">
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row">
-                  <div class="align-items-center mt-2">
-                    <label class="customcheck">
-                      Ballon Fly
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-                </th>
-                <td>
-                  <span class="badge badge-dot mr-4">
-                    <i class="bg-red"></i> pending
-                  </span>
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 align-items-center">
-                    43
-                  </span>
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 align-items-center">
-                  </span>
-                </td>
-                <td class="text-right">
-                  <div ngbDropdown placement="bottom-right">
-                    <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </a>
-                    <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row">
-                  <div class="align-items-center mt-2">
-                    <label class="customcheck">
-                      Ballon Fly
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </div>
-                </th>
-                <td>
-                  <span class="badge badge-dot mr-4">
-                    <i class="bg-red"></i> pending
-                  </span>
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 align-items-center">
-                    43
-                  </span>
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 align-items-center">
+                    {{dateExample | date}}
                   </span>
                 </td>
                 <td class="text-right">
