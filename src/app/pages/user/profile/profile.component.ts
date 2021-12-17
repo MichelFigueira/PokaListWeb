@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { ValidatorField } from '@app/helpers/ValidatorField';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -7,9 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+
+  get f(): any {
+    return this.form.controls;
+  }
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.validatitonForm();
+  }
+
+  public validatitonForm(): void {
+
+    const formOptions: AbstractControlOptions = {
+      validators: ValidatorField.mustMatch('password', 'confirmPassword')
+    };
+
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      name: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required]],
+      address: [''],
+      city: [''],
+      country: [''],
+      postalCode: [''],
+      aboutMe: ['']
+    }, formOptions);
   }
 
 }

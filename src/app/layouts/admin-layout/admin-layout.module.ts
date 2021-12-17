@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ClipboardModule } from 'ngx-clipboard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,6 +15,7 @@ import { ProfileComponent } from '../../pages/user/profile/profile.component';
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule

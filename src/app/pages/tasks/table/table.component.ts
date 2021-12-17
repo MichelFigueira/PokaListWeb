@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 import { Poka } from 'src/app/models/Poka';
-import { PokaService } from 'src/app/services/poka.service';
+import { PokaService } from '@app/services/poka.service';
 
 @Component({
   selector: 'app-table',
