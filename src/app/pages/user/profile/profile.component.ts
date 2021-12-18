@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ValidatorField } from '@app/helpers/ValidatorField';
 @Component({
@@ -40,4 +40,7 @@ export class ProfileComponent implements OnInit {
     }, formOptions);
   }
 
+  cssValidator(field: FormControl | AbstractControl): any {
+    return { 'is-invalid': field.errors && field.touched };
+  }
 }

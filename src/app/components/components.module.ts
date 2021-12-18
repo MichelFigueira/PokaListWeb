@@ -1,3 +1,4 @@
+import { SidebarMenuComponent } from './sidebar/sidebar-menu/sidebar-menu.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -8,15 +9,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgbModule
-  ],
   declarations: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    SidebarMenuComponent
+  ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgbModule,
   ],
   exports: [
     FooterComponent,

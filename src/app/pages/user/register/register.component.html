@@ -65,7 +65,7 @@
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
                 <input class="form-control" [ngClass]="{ 'is-invalid': f.confirmPassword.errors && f.confirmPassword.touched }"
-                formControlName="confirmPassword" placeholder="Confirm Password" type="confirmPassword">
+                formControlName="confirmPassword" placeholder="Confirm Password" type="password">
                 <div class="ml-1 invalid-feedback" *ngIf="f.confirmPassword.errors?.required">Confirm Password is required</div>
                 <div class="ml-1 invalid-feedback" *ngIf="f.confirmPassword.errors?.mustMatch">Passwords do not match</div>
               </div>
