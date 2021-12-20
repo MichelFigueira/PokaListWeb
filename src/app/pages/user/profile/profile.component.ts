@@ -11,9 +11,7 @@ export class ProfileComponent implements OnInit {
 
   form: FormGroup;
 
-  get f(): any {
-    return this.form.controls;
-  }
+  get f(): any { return this.form.controls; }
 
   constructor(private fb: FormBuilder) { }
 

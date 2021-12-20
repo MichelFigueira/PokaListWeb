@@ -1,6 +1,8 @@
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Poka } from 'src/app/models/Poka';
 import { PokaService } from '@app/services/poka.service';
@@ -14,21 +16,29 @@ export class TableComponent implements OnInit {
 
   focus: any;
   pokas: Poka[];
+  poka = {} as Poka;
+  form: FormGroup
+
   pokasFiltered: Poka[];
   private filterListed = '';
+
   dateExample = new Date(12/12/2021);
+  get fp(): any { return this.form.controls; }
 
   constructor(
     private pokaService: PokaService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private fb: FormBuilder,
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit() {
     this.getPokas();
+    this.validatitonForm();
   }
 
   getPokas() {
-    this.pokaService.getPoka().subscribe(pokas => {
+    this.pokaService.get().subscribe(pokas => {
       this.pokas = pokas;
       this.pokasFiltered = pokas;
     });
@@ -55,4 +65,33 @@ export class TableComponent implements OnInit {
     this.toastr.success('Congratulations!');
   }
 
+  openModal(content, pokaId) {
+    this.modalService.open(content,{ centered: true });
+
+    if (pokaId !== null) {
+      this.pokaService.getById(pokaId).subscribe(poka => {
+        this.poka = { ...poka };
+        this.form.patchValue(this.poka);
+      });
+    }
+
+  }
+
+  public validatitonForm(): void {
+    this.form = this.fb.group({
+      title: ['', Validators.required],
+      description: [''],
+      groupId: ['']
+    });
+  }
+
+  cssValidator(field: FormControl | AbstractControl): any {
+    return { 'is-invalid': field.errors && field.touched };
+  }
+
+  savePoka(id) {
+    if (this.form.valid) {
+      this.pokaService.put(this.poka.id, this.form.value).subscribe();
+    }
+  }
 }

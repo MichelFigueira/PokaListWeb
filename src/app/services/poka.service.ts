@@ -10,10 +10,25 @@ import { Poka } from '../models/Poka';
 })
 export class PokaService {
 
+  url = urlAPI + 'pokas/'
+
   constructor(private http: HttpClient) { }
 
-  getPoka() {
-    return this.http.get<Poka[]>(urlAPI + 'pokas');
+  get() {
+    return this.http.get<Poka[]>(this.url);
+  }
+
+  getById(id) {
+    return this.http.get<Poka>(this.url + id)
+  }
+
+  post(poka: Poka): Observable<Poka> {
+    return this.http.post<Poka>(this.url, poka);
+  }
+
+  put(id: number, poka: Poka): Observable<Poka> {
+    console.log(id);
+    return this.http.put<Poka>(this.url + id, poka);
   }
 
 }

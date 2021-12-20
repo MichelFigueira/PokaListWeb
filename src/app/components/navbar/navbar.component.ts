@@ -1,7 +1,8 @@
-import { MenuItems } from './../../helpers/MenuItems';
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+
+import { MenuItems } from '@app/helpers/MenuItems';
 
 @Component({
   selector: 'app-navbar',

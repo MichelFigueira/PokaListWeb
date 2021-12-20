@@ -19,35 +19,45 @@
 
 <ng-template #contentPoka let-c="close" let-d="dismiss">
   <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">New Poka</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form formGroupName="form">
-        <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-          <div class="input-group input-group-alternative">
-            <input class="form-control" placeholder="Title" type="text" (focus)="focus=true" (blur)="focus=false" required>
+    <form [formGroup]="form">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">New Poka</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
+            <div class="input-group input-group-alternative">
+              <input id="title" class="form-control" placeholder="Title" type="text" (focus)="focus=true" (blur)="focus=false"
+              formControlName="title" [ngClass]="cssValidator(fp.title)">
+              <div class="ml-1 invalid-feedback" *ngIf="fp.title.errors?.required">Title is required</div>
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{'focused':focus1===true}">
+            <div class="input-group input-group-alternative">
+              <input id="description" class="form-control" placeholder="Description" type="text" (focus)="focus1=true" (blur)="focus1=false"
+              formControlName="description">
+            </div>
+          </div>
+          <div class="form-group" [ngClass]="{'focused':focus1===true}">
+            <div class="input-group input-group-alternative">
+              <select class="form-control form-select" id="groupId" formControlName="groupId">
+                <option value="1">Default Group</option>
+              </select>
+            </div>
+          </div>
+          <div class="custom-control custom-control-alternative custom-checkbox">
+            <input class="custom-control-input" id="suggestionCheck" type="checkbox">
+            <label class="custom-control-label" for="suggestionCheck">
+              <span class="ml--3">Send as a Suggestion to the team</span>
+            </label>
           </div>
         </div>
-        <div class="form-group" [ngClass]="{'focused':focus1===true}">
-          <div class="input-group input-group-alternative">
-            <input class="form-control" placeholder="Description" type="text" (focus)="focus1=true" (blur)="focus1=false">
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="d()">Cancel</button>
+          <button type="button" [disabled]="!form.valid" class="btn btn-success" (click)="newPoka()">Create</button>
         </div>
-        <div class="custom-control custom-control-alternative custom-checkbox">
-          <input class="custom-control-input" id="suggestionCheck" type="checkbox">
-          <label class="custom-control-label" for="suggestionCheck">
-            <span class="ml--3">Send as a Suggestion to the team</span>
-          </label>
-        </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" (click)="d('Close click')">Cancel</button>
-      <button type="button" class="btn btn-success" (click)="c('Save click')">Create</button>
-    </div>
+    </form>
   </div>
 </ng-template>
