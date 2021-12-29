@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -19,8 +20,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public userService: UserService
-
+    public userService: UserService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -45,11 +46,12 @@ export class ProfileComponent implements OnInit {
   }
 
   public updateUser() {
+
     this.userUpdate = { ...this.form.value }
 
     this.userService.updateUser(this.userUpdate).subscribe({
-      next: () => {},
-      error: (error) => { console.log(error);}
+      next: () => { this.toastr.success('Profile Saved!'); },
+      error: (error) => { console.log(error); }
     });
   }
 
