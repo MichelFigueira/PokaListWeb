@@ -1,3 +1,4 @@
+import { UserService } from '@app/services/user.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,19 +12,25 @@ import { MenuItems } from '@app/helpers/MenuItems';
 })
 export class NavbarComponent implements OnInit {
 
-  name = 'Valeria Figueira'
-
   public focus;
   public listTitles: any[];
   public location: Location;
 
-  constructor(location: Location,  private element: ElementRef, private router: Router) {
-    this.location = location;
-  }
+  constructor(
+    location: Location,
+    private router: Router,
+    public userService: UserService
+  ) { this.location = location; }
 
   ngOnInit() {
     this.listTitles = MenuItems.filter(listTitle => listTitle);
   }
+
+  logout(): void {
+    this.userService.logout();
+    this.router.navigateByUrl('/login');
+  }
+
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if(titlee.charAt(0) === '#'){

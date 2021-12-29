@@ -26,7 +26,7 @@
           <div class="text-center text-muted mb-4">
             <small>Or sign up with credentials</small>
           </div>
-          <form [formGroup]="form">
+          <form [formGroup]="form" (ngSubmit)="register()">
             <div class="form-group mb-3">
               <div class="input-group input-group-alternative mb-3"[ngClass]="{ 'has-danger': f.name.errors && f.name.touched }">
                 <div class="input-group-prepend">
@@ -38,14 +38,14 @@
               </div>
             </div>
             <div class="form-group">
-              <div class="input-group input-group-alternative mb-3" [ngClass]="{ 'has-danger': f.email.errors && f.email.touched }">
+              <div class="input-group input-group-alternative mb-3" [ngClass]="{ 'has-danger': f.userName.errors && f.userName.touched }">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                <input class="form-control" [ngClass]="{ 'is-invalid': f.email.errors && f.email.touched }"
-                formControlName="email" placeholder="Email" type="email">
-                <div class="ml-1 invalid-feedback" *ngIf="f.email.errors?.required">Email is required</div>
-                <div class="ml-1 invalid-feedback" *ngIf="f.email.errors?.email">Please enter a valid email address</div>
+                <input class="form-control" [ngClass]="{ 'is-invalid': f.userName.errors && f.userName.touched }"
+                formControlName="userName" placeholder="Email" type="email">
+                <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.required">Email is required</div>
+                <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.email">Please enter a valid email address</div>
               </div>
             </div>
             <div class="form-group">
@@ -82,7 +82,7 @@
               </div>
             </div>
             <div class="text-center">
-              <button type="button" [disabled]="!form.valid" class="btn btn-primary mt-4">Create account</button>
+              <button type="submit" [disabled]="!form.valid" class="btn btn-primary mt-4">Create account</button>
             </div>
           </form>
         </div>

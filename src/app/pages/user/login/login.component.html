@@ -26,16 +26,16 @@
           <div class="text-center text-muted mb-4">
             <small>Or sign in with credentials</small>
           </div>
-          <form [formGroup]="form">
+          <form [formGroup]="form" (ngSubmit)="login()">
             <div class="form-group mb-3">
-              <div class="input-group input-group-alternative" [ngClass]="{ 'has-danger': f.email.errors && f.email.touched }">
+              <div class="input-group input-group-alternative" [ngClass]="{ 'has-danger': f.userName.errors && f.userName.touched }">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
-                  <input class="form-control" [ngClass]="{ 'is-invalid': f.email.errors && f.email.touched }"
-                  formControlName="email" placeholder="Email" type="email">
-                  <div class="ml-1 invalid-feedback" *ngIf="f.email.errors?.required">Email is required</div>
-                  <div class="ml-1 invalid-feedback" *ngIf="f.email.errors?.email">Please enter a valid email address</div>
+                  <input [(ngModel)]="model.userName" class="form-control" [ngClass]="{ 'is-invalid': f.userName.errors && f.userName.touched }"
+                  formControlName="userName" placeholder="Email" type="email">
+                  <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.required">Email is required</div>
+                  <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.email">Please enter a valid email address</div>
               </div>
             </div>
             <div class="form-group">
@@ -43,7 +43,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                  <input class="form-control" [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched }"
+                  <input [(ngModel)]="model.password" class="form-control" [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched }"
                   formControlName="password" placeholder="Password" type="password">
                   <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.required">Password is required</div>
                   <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.minlength">Password must be at least 6 characters</div>
@@ -56,7 +56,7 @@
               </label>
             </div>
             <div class="text-center">
-              <button type="button" [disabled]="!form.valid" class="btn btn-primary my-4">Sign in</button>
+              <button type="submit" [disabled]="!form.valid" class="btn btn-primary my-4">Sign in</button>
             </div>
           </form>
         </div>

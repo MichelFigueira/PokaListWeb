@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 
 import { ValidatorField } from '@app/helpers/ValidatorField';
+import { UserService } from '@app/services/user.service';
+import { UserUpdate } from '@app/models/UserUpdate';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -9,27 +12,57 @@ import { ValidatorField } from '@app/helpers/ValidatorField';
 })
 export class ProfileComponent implements OnInit {
 
+  userUpdate = {} as UserUpdate
   form: FormGroup;
 
   get f(): any { return this.form.controls; }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    public userService: UserService
+
+  ) { }
 
   ngOnInit() {
+    this.loadingUser();
     this.validatitonForm();
   }
 
-  public validatitonForm(): void {
+  private loadingUser(): void {
+    this.userService.getUser().subscribe({
+      next: (returnUser: UserUpdate) => {
+        this.userUpdate = returnUser;
+        this.form.patchValue(this.userUpdate);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
 
+  onSubmit() {
+    this.updateUser();
+  }
+
+  public updateUser() {
+    this.userUpdate = { ...this.form.value }
+
+    this.userService.updateUser(this.userUpdate).subscribe({
+      next: () => {},
+      error: (error) => { console.log(error);}
+    });
+  }
+
+  public validatitonForm(): void {
     const formOptions: AbstractControlOptions = {
       validators: ValidatorField.mustMatch('password', 'confirmPassword')
     };
 
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      userName: ['', [Validators.required, Validators.email]],
       name: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]],
+      password: ['', [Validators.minLength(6), Validators.nullValidator]],
+      confirmPassword: ['', Validators.nullValidator],
       address: [''],
       city: [''],
       country: [''],
