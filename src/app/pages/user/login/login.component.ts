@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { ToastrService } from 'ngx-toastr';
+
 import { UserService } from '@app/services/user.service';
 import { UserLogin } from '@app/models/UserLogin';
 
@@ -22,7 +24,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -41,7 +44,7 @@ export class LoginComponent implements OnInit {
       next: () => { this.router.navigateByUrl('/tasks'); },
       error: (error: any) => {
         if (error.status == 401)
-          console.error("Invalid Email or Password", error);
+          this.toastr.error('Invalid Email or Password!');
         else
           console.error(error);
       }
