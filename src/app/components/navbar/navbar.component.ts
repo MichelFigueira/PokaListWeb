@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { debounceTime } from 'rxjs';
 
-import { urlAPI, urlResources } from 'src/environments/environment';
+import { urlResources } from 'src/environments/environment';
 import { MenuItems } from '@app/helpers/MenuItems';
 import { UserService } from '@app/services/user.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
@@ -13,8 +15,6 @@ import { UserService } from '@app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  //pictureURL = urlResources + 'profileimages/';
-
   public focus;
   public listTitles: any[];
   public location: Location;
@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     location: Location,
     private router: Router,
-    public userService: UserService
+    public userService: UserService,
   ) { this.location = location; }
 
   ngOnInit() {
@@ -35,7 +35,6 @@ export class NavbarComponent implements OnInit {
   }
 
   public getPhotoURL(imageName: string): string {
-    console.log(urlResources + `profileimages/${imageName}`)
     if (imageName)
       return urlResources + `profileimages/${imageName}`;
     else
