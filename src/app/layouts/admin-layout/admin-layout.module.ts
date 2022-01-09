@@ -8,9 +8,16 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
-import { ProfileComponent } from '../../pages/user/profile/profile.component';
+import { ProfileComponent } from '@app/pages/user/profile/profile.component';
+import { ProfileCardComponent } from '@app/pages/user/profile/profile-card/profile-card.component';
+import { ProfileDetailsComponent } from '@app/pages/user/profile/profile-details/profile-details.component';
 
 @NgModule({
+  declarations: [
+    ProfileComponent,
+    ProfileCardComponent,
+    ProfileDetailsComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
@@ -19,9 +26,6 @@ import { ProfileComponent } from '../../pages/user/profile/profile.component';
     HttpClientModule,
     NgbModule,
     ClipboardModule
-  ],
-  declarations: [
-    ProfileComponent
   ]
 })
 

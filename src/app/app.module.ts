@@ -32,7 +32,6 @@ import { TasksModule } from './pages/tasks/tasks.module';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    TasksModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-bottom-right',

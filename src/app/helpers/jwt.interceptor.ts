@@ -1,12 +1,8 @@
-import { UserService } from '@app/services/user.service';
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
-import { Observable, take } from 'rxjs';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { catchError, Observable, take, throwError } from 'rxjs';
+
+import { UserService } from '@app/services/user.service';
 import { User } from '@app/models/User';
 
 @Injectable()
@@ -30,6 +26,13 @@ export class JwtInterceptor implements HttpInterceptor {
 
     });
 
-    return next.handle(request);
+    return next.handle(request).pipe(
+      catchError(error => {
+        if (error) {
+          localStorage.removeItem('user')
+        }
+        return throwError(error);
+      })
+    );
   }
 }

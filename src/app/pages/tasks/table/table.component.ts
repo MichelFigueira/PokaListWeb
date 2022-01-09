@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Poka } from 'src/app/models/Poka';
 import { PokaService } from '@app/services/poka.service';
+import { Pagination } from '@app/models/Pagination';
 
 @Component({
   selector: 'app-table',
@@ -21,6 +22,8 @@ export class TableComponent implements OnInit {
 
   pokasFiltered: Poka[];
   private filterListed = '';
+
+  public pagination = {} as Pagination;
 
   dateExample = new Date(12/12/2021);
   get fp(): any { return this.form.controls; }
@@ -94,4 +97,6 @@ export class TableComponent implements OnInit {
       this.pokaService.put(this.poka.id, this.form.value).subscribe();
     }
   }
+
+
 }

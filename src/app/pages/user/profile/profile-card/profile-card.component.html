@@ -1,0 +1,36 @@
+<div class="card card-profile shadow">
+  <div class="row justify-content-center">
+    <div class="col-lg-3 order-lg-2">
+      <div class="card-profile-image">
+        <input type="file" #file (change)="onFileChange($event)" hidden />
+        <a (click)="file.click()" style="cursor: pointer">
+          <img [src]="photoURL" class="rounded-circle">
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+  </div>
+  <div class="card-body pt-0 pt-md-4">
+    <div class="row">
+      <div class="col">
+        <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+          <div>
+            <a href="javascript:void(0)" class="btn btn-sm btn-warning">Connect with your love ❤️</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="text-center">
+      <h3>
+        Your Love
+      </h3>
+      <div class="h5 font-weight-300">
+        <i class="ni location_pin mr-2"></i>Vancouver, Canada
+      </div>
+      <div>
+        <i class="ni education_hat mr-2"></i>About your love
+      </div>
+    </div> -->
+  </div>
+</div>

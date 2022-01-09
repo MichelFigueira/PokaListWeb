@@ -1,9 +1,10 @@
-import { UserService } from '@app/services/user.service';
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
+import { urlAPI, urlResources } from 'src/environments/environment';
 import { MenuItems } from '@app/helpers/MenuItems';
+import { UserService } from '@app/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,8 @@ import { MenuItems } from '@app/helpers/MenuItems';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
+  //pictureURL = urlResources + 'profileimages/';
 
   public focus;
   public listTitles: any[];
@@ -31,6 +34,14 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
+  public getPhotoURL(imageName: string): string {
+    console.log(urlResources + `profileimages/${imageName}`)
+    if (imageName)
+      return urlResources + `profileimages/${imageName}`;
+    else
+      return './assets/img/theme/profile-picture.jpg';
+  }
+
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if(titlee.charAt(0) === '#'){
@@ -42,7 +53,7 @@ export class NavbarComponent implements OnInit {
             return this.listTitles[item].title;
         }
     }
-    return 'Dashboard';
+    return '';
   }
 
 }
