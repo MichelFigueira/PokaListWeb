@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -14,7 +15,6 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { ComponentsModule } from './components/components.module';
-import { TasksModule } from './pages/tasks/tasks.module';
 
 
 @NgModule({

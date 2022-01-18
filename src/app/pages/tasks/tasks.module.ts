@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
@@ -28,6 +29,7 @@ import { TasksComponent } from './tasks.component';
     NgbModule,
     RouterModule,
     TasksRoutingModule,
+    PaginationModule.forRoot(),
     LoadingBarHttpClientModule
   ],
   providers: [],

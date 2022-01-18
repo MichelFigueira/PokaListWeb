@@ -1,12 +1,13 @@
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
+import { debounceTime, Subject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Poka } from 'src/app/models/Poka';
 import { PokaService } from '@app/services/poka.service';
-import { Pagination } from '@app/models/Pagination';
+import { PaginatedResult, Pagination } from '@app/models/Pagination';
 
 @Component({
   selector: 'app-table',
@@ -20,10 +21,10 @@ export class TableComponent implements OnInit {
   poka = {} as Poka;
   form: FormGroup
 
-  pokasFiltered: Poka[];
-  private filterListed = '';
-
   public pagination = {} as Pagination;
+  
+  termFindChanged: Subject<string> = new Subject<string>();
+
 
   dateExample = new Date(12/12/2021);
   get fp(): any { return this.form.controls; }
@@ -35,33 +36,47 @@ export class TableComponent implements OnInit {
     private modalService: NgbModal,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.pagination = { currentPage: 1, itemsPerPage: 3, totalItems: 1} as Pagination;
     this.getPokas();
     this.validatitonForm();
   }
 
-  getPokas() {
-    this.pokaService.get().subscribe(pokas => {
-      this.pokas = pokas;
-      this.pokasFiltered = pokas;
-    });
+  getPokas(): void {
+    this.pokaService
+      .get(this.pagination.currentPage, this.pagination.itemsPerPage, '')
+      .subscribe((paginatedResult: PaginatedResult<Poka[]>) => {
+        {
+          this.pokas = paginatedResult.result;
+          this.pagination = paginatedResult.pagination;
+        }
+      });
   }
 
-  public get filterList(): string {
-    return this.filterListed;
+  public pageChanged(event): void {
+    this.pagination.currentPage = event.page;
+    this.getPokas();
   }
 
-  public set filterList(value: string) {
-    this.filterListed = value;
-    this.pokas = this.filterList ? this.filterPokas(this.filterList) : this.pokas;
-  }
-
-  public filterPokas(filterBy: string): Poka[] {
-    filterBy = filterBy.toLocaleLowerCase();
-    return this.pokas.filter(
-      (poka: any) => poka.title?.toLocaleLowerCase().indexOf(filterBy) !== -1 ||
-      poka.description?.toLocaleLowerCase().indexOf(filterBy) !== -1
-    );
+  public filterPokas(event: any): void {
+    if (this.termFindChanged.observers.length === 0) {
+      this.termFindChanged
+        .pipe(debounceTime(500))
+        .subscribe((filterBy) => { 
+          this.pokaService.get(
+            this.pagination.currentPage, 
+            this.pagination.itemsPerPage,
+            filterBy
+          ).subscribe((paginatedResult: PaginatedResult<Poka[]>) => {
+              next: {
+                this.pokas = paginatedResult.result;
+                this.pagination = paginatedResult.pagination;
+              }
+          });
+        }
+      )
+    }
+    this.termFindChanged.next(event.value);
   }
 
   checkPoka(): void {
@@ -98,5 +113,5 @@ export class TableComponent implements OnInit {
     }
   }
 
-
+  
 }
