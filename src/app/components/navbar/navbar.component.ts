@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { debounceTime } from 'rxjs';
 
-import { urlResources } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { MenuItems } from '@app/helpers/MenuItems';
 import { UserService } from '@app/services/user.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
@@ -36,7 +34,7 @@ export class NavbarComponent implements OnInit {
 
   public getPhotoURL(imageName: string): string {
     if (imageName)
-      return urlResources + `profileimages/${imageName}`;
+      return environment.urlResources + `profileimages/${imageName}`;
     else
       return './assets/img/theme/profile-picture.jpg';
   }

@@ -1,9 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PaginatedResult } from '@app/models/Pagination';
 import { map, Observable, take } from 'rxjs';
 
-import { urlAPI } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
+import { PaginatedResult } from '@app/models/Pagination';
 import { Poka } from '@app/models/Poka';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { Poka } from '@app/models/Poka';
 })
 export class PokaService {
 
-  url = urlAPI + 'pokas/'
+  url = environment.urlAPI + 'pokas/'
 
   constructor(private http: HttpClient) { }
 

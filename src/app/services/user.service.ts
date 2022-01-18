@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, ReplaySubject, take } from 'rxjs';
 
-import { urlAPI } from 'src/environments/environment';
 import { User } from '@app/models/User';
 import { UserUpdate } from '@app/models/UserUpdate';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class UserService {
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
-  url = urlAPI + 'user/'
+  url = environment.urlAPI + 'user/'
 
   constructor(private http: HttpClient) { }
 
