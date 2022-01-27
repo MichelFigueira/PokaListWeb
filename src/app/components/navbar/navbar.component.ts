@@ -3,8 +3,8 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
-import { MenuItems } from '@app/helpers/MenuItems';
 import { UserService } from '@app/services/user.service';
+import { MenuItems } from '@app/helpers/menuItems';
 
 @Component({
   selector: 'app-navbar',

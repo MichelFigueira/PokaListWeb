@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { MenuItems } from '@app/helpers/menuItems';
 import { PokaService } from 'src/app/services/poka.service';
 import { Poka } from '@app/models/Poka';
+import { MenuItems } from '@app/helpers/menuItems';
 
 
 @Component({
@@ -33,6 +33,7 @@ export class SidebarMenuComponent implements OnInit {
     this.menuItems = MenuItems.filter(menuItem => !menuItem.admin);
     this.adminItems = MenuItems.filter(adminItem => adminItem.admin);
     this.validatitonForm();
+    console.log(this.menuItems)
   }
 
   openModal(content) {
