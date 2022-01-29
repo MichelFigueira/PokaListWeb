@@ -37,7 +37,7 @@ export class TableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pagination = { currentPage: 1, itemsPerPage: 5, totalItems: 1} as Pagination;
+    this.pagination = { currentPage: 1, itemsPerPage: 10, totalItems: 1} as Pagination;
     this.getPokas();
     this.validatitonForm();
   }

@@ -40,8 +40,9 @@ export class RegisterComponent implements OnInit {
       name: ['', Validators.required],
       userName: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]],
-      defaultData: ['']
+      confirmPassword: ['', Validators.required],
+      defaultData: [''],
+      privacyPolicy: ['', Validators.requiredTrue]
     }, formOptions);
 
     this.form.patchValue({defaultData: true});

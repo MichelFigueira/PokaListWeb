@@ -73,9 +73,15 @@
             <!-- <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div> -->
             <div class="row my-4">
               <div class="col-12">
+                <div class="custom-control custom-control-alternative custom-checkbox mb-2">
+                  <input formControlName="defaultData" class="custom-control-input" id="defaultDataCheck" type="checkbox">
+                  <label class="custom-control-label" for="defaultDataCheck">
+                    <span class="text-muted">Create with Standard Pokas!</span>
+                  </label>
+                </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                  <label class="custom-control-label" for="customCheckRegister">
+                  <input formControlName="privacyPolicy" class="custom-control-input" id="privacyPolicyCheck" type="checkbox">
+                  <label class="custom-control-label" for="privacyPolicyCheck">
                     <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
                   </label>
                 </div>
