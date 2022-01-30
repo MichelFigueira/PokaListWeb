@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 import { TasksRoutingModule } from './tasks.routing';
 
@@ -29,8 +28,7 @@ import { TasksComponent } from './tasks.component';
     NgbModule,
     RouterModule,
     TasksRoutingModule,
-    PaginationModule.forRoot(),
-    LoadingBarHttpClientModule
+    PaginationModule.forRoot()
   ],
   providers: [],
   bootstrap: []

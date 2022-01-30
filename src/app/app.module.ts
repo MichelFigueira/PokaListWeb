@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -32,6 +32,7 @@ import { ComponentsModule } from './components/components.module';
     NgbModule,
     RouterModule,
     AppRoutingModule,
+    LoadingBarHttpClientModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-bottom-right',
