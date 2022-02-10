@@ -7,6 +7,6 @@ export interface UserUpdate {
   country: string;
   postalCode: string;
   aboutMe: string;
-  photoURL: string;
+  photoBytes: string;
   token: string;
 }

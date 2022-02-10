@@ -76,7 +76,7 @@ export class ProfileDetailsComponent implements OnInit {
       name: ['', Validators.required],
       password: ['', [Validators.minLength(6), Validators.nullValidator]],
       confirmPassword: ['', Validators.nullValidator],
-      photoURL: [''],
+      photoBytes: [''],
       address: [''],
       city: [''],
       country: [''],

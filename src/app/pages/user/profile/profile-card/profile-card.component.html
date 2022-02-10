@@ -2,10 +2,11 @@
   <div class="row justify-content-center">
     <div class="col-lg-3 order-lg-2">
       <div class="card-profile-image">
-        <input type="file" #file (change)="onFileChange($event)" hidden />
+        <input type="file" #file (change)="fileChangeEvent($event, cropperModal)" hidden/>
         <a (click)="file.click()" style="cursor: pointer">
-          <img [src]="photoURL" class="rounded-circle">
-        </a>
+          <img *ngIf="!croppedImage" [src]="photo" class="rounded-circle">
+          <img [src]="croppedImage" class="rounded-circle">
+        </a> 
       </div>
     </div>
   </div>
@@ -34,3 +35,23 @@
     </div> -->
   </div>
 </div>
+
+<ng-template #cropperModal let-c="close" let-d="dismiss">
+  <div class="modal-content">
+    <image-cropper
+      [imageChangedEvent]="imageChangedEvent"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="4 / 4"
+      [roundCropper]="true"
+      format="png"
+      (imageCropped)="imageCropped($event)"
+      (imageLoaded)="imageLoaded()"
+      (cropperReady)="cropperReady()"
+      (loadImageFailed)="loadImageFailed()">
+    </image-cropper>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="d(croppedImage=null)">Cancel</button>
+      <button type="button" class="btn btn-success" (click)="uploadImage()">Save Photo</button>
+    </div>
+  </div>
+</ng-template>

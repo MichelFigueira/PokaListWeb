@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { environment } from 'src/environments/environment';
 import { UserService } from '@app/services/user.service';
 import { MenuItems } from '@app/helpers/menuItems';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-navbar',
@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
     location: Location,
     private router: Router,
     public userService: UserService,
+    private sanitizer: DomSanitizer
   ) { this.location = location; }
 
   ngOnInit() {
@@ -34,7 +35,7 @@ export class NavbarComponent implements OnInit {
 
   public getPhotoURL(imageName: string): string {
     if (imageName)
-      return environment.urlResources + `profileimages/${imageName}`;
+      return 'data:image/jpg;base64,' + (this.sanitizer.bypassSecurityTrustResourceUrl(imageName) as any).changingThisBreaksApplicationSecurity;
     else
       return './assets/img/theme/profile-picture.jpg';
   }

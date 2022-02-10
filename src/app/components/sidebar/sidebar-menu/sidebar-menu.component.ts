@@ -33,7 +33,6 @@ export class SidebarMenuComponent implements OnInit {
     this.menuItems = MenuItems.filter(menuItem => !menuItem.admin);
     this.adminItems = MenuItems.filter(adminItem => adminItem.admin);
     this.validatitonForm();
-    console.log(this.menuItems)
   }
 
   openModal(content) {

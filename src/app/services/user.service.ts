@@ -50,7 +50,6 @@ export class UserService {
     return this.http.put<UserUpdate>(this.url + 'updateUser', model).pipe(
       take(1),
       map((user: UserUpdate) => {
-        console.log(user);
         this.setCurrentUser(user);
       })
     );
@@ -66,13 +65,13 @@ export class UserService {
   }
 
   postUpload(file: File): Observable<UserUpdate> {
-    const fileToUpload = file[0] as File;
+    const fileToUpload = file as File;  
     const formData = new FormData();
     formData.append('file', fileToUpload);
 
     return this.http
       .post<UserUpdate>(this.url + 'upload-image', formData)
-      .pipe(take(1)).pipe();
+      .pipe(take(1));
   }
 
 }

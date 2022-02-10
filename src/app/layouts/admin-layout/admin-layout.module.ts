@@ -11,6 +11,7 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { ProfileComponent } from '@app/pages/user/profile/profile.component';
 import { ProfileCardComponent } from '@app/pages/user/profile/profile-card/profile-card.component';
 import { ProfileDetailsComponent } from '@app/pages/user/profile/profile-details/profile-details.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProfileDetailsComponent } from '@app/pages/user/profile/profile-details
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    ImageCropperModule
   ]
 })
 
