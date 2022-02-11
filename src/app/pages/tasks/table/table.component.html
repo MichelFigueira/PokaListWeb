@@ -16,9 +16,8 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Description</th>
+                <th scope="col">Title</th>
                 <th scope="col">Status</th>
-                <th scope="col">Points</th>
                 <th scope="col">Finished</th>
                 <th scope="col"></th>
               </tr>
@@ -29,29 +28,24 @@
                   <div class="align-items-center mt-2">
                     <label class="customcheck">
                       {{poka.title}}
-                      <input type="checkbox" (click)="checkPoka()">
+                      <input type="checkbox" (click)="checkPoka(poka, $event.target.checked)" *ngIf="poka.status === 0">
+                      <input type="checkbox" (click)="checkPoka(poka, $event.target.checked)" *ngIf="poka.status === 1" checked>
                       <span class="checkmark"></span>
                     </label>
                   </div>
                 </th>
                 <td>
-                  <span class="badge badge-dot mr-4">
-                    <i class="bg-red"></i> pending
-                  </span>
+                  <span *ngIf="poka.status === 0" class="badge badge-dot mr-4"> <i class="bg-yellow"></i> Pending</span>
+                  <span *ngIf="poka.status === 1" class="badge badge-dot mr-4"> <i class="bg-green"></i> Completed</span>
                 </td>
                 <td>
                   <span class="badge badge-dot mr-4 align-items-center">
-                    43
-                  </span>
-                </td>
-                <td>
-                  <span class="badge badge-dot mr-4 align-items-center">
-                    {{dateExample | date}}
+                    {{poka.dateFinished | date}}
                   </span>
                 </td>
                 <td class="text-right">
                   <div>
-                    <a class="btn btn-sm btn-icon-only text-light" (click)="openModal(contentPoka, this.poka.id)">
+                    <a class="btn btn-sm btn-icon-only text-light" (click)="openModal(contentPoka, this.poka)">
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                   </div>
@@ -112,7 +106,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" (click)="d()">Cancel</button>
-          <button type="button" [disabled]="!form.valid" class="btn btn-success" (click)="savePoka(id)">Save</button>
+          <button type="button" [disabled]="!form.valid" class="btn btn-success" (click)="savePoka()">Save</button>
         </div>
     </form>
   </div>

@@ -20,13 +20,12 @@ export class TableComponent implements OnInit {
   pokas: Poka[];
   poka = {} as Poka;
   form: FormGroup
+  modalReference: any;
 
   public pagination = {} as Pagination;
   
   termFindChanged: Subject<string> = new Subject<string>();
 
-
-  dateExample = new Date(12/12/2021);
   get fp(): any { return this.form.controls; }
 
   constructor(
@@ -79,25 +78,34 @@ export class TableComponent implements OnInit {
     this.termFindChanged.next(event.value);
   }
 
-  checkPoka(): void {
-    this.toastr.success('Congratulations!');
+  checkPoka(poka: Poka, event): void {
+    if (event === true) {
+      poka.dateFinished = new Date();
+      poka.status = 1;
+      this.pokaService.put(poka.id, poka).subscribe();
+      this.toastr.success('Congratulations!');
+
+    } else {
+      poka.dateFinished = null
+      poka.status = 0;
+      this.pokaService.put(poka.id, poka).subscribe();
+      this.toastr.error('Oh No :(');
+    }
   }
 
-  openModal(content, pokaId) {
-    this.modalService.open(content,{ centered: true });
+  openModal(content, poka: Poka) {
+    this.modalReference = this.modalService.open(content,{ centered: true });
 
-    if (pokaId !== null) {
-      this.pokaService.getById(pokaId).subscribe(poka => {
-        this.poka = { ...poka };
-        this.form.patchValue(this.poka);
-      });
+    if (poka !== null) {
+      this.poka = poka;
+      this.form.patchValue(this.poka);
     }
 
   }
 
   public validatitonForm(): void {
     this.form = this.fb.group({
-      title: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(5)]],
       description: [''],
       groupId: ['']
     });
@@ -107,9 +115,16 @@ export class TableComponent implements OnInit {
     return { 'is-invalid': field.errors && field.touched };
   }
 
-  savePoka(id) {
+  savePoka() {
     if (this.form.valid) {
-      this.pokaService.put(this.poka.id, this.form.value).subscribe();
+      this.pokaService.put(this.poka.id, this.form.value).subscribe({
+        complete: () => {
+          this.toastr.success('Saved!');
+          this.modalReference.close();
+          this.getPokas();
+        },
+        error: (error:any) => this.toastr.error(error, 'Error')
+      });
     }
   }
 

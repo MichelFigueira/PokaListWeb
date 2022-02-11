@@ -54,7 +54,6 @@ export class PokaService {
   }
 
   put(id: number, poka: Poka) {
-    
     return this.http.put<Poka>(this.url + id, poka);
   }
 
