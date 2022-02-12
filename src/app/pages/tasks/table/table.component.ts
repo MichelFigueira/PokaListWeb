@@ -63,14 +63,14 @@ export class TableComponent implements OnInit {
   public filterPokas(event: any): void {
     if (this.termFindChanged.observers.length === 0) {
       this.termFindChanged
-        .pipe(debounceTime(500))
+        .pipe(debounceTime(450))
         .subscribe((filterBy) => { 
           this.pokaService.get(
             this.pagination.currentPage, 
             this.pagination.itemsPerPage,
             filterBy
           ).subscribe((paginatedResult: PaginatedResult<Poka[]>) => {
-              next: {
+              {
                 this.pokas = paginatedResult.result;
                 this.pagination = paginatedResult.pagination;
               }
