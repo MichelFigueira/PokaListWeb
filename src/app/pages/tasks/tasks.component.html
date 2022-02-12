@@ -1,2 +1,2 @@
-<app-cards></app-cards>
-<app-table></app-table>
+<app-cards [countCards]="pokaCountGo()"></app-cards>
+<app-table (pokaCountEmitter)="pokaCount($event)"></app-table>

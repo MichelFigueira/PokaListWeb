@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { debounceTime, Subject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -15,6 +15,8 @@ import { PaginatedResult, Pagination } from '@app/models/Pagination';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
+
+  @Output() pokaCountEmitter = new EventEmitter();
 
   focus: any;
   pokas: Poka[];
@@ -48,6 +50,7 @@ export class TableComponent implements OnInit {
         {
           this.pokas = paginatedResult.result;
           this.pagination = paginatedResult.pagination;
+          this.getCardNumbers();
         }
       });
   }
@@ -91,6 +94,8 @@ export class TableComponent implements OnInit {
       this.pokaService.put(poka.id, poka).subscribe();
       this.toastr.error('Oh No :(');
     }
+
+    this.getCardNumbers();
   }
 
   openModal(content, poka: Poka) {
@@ -126,6 +131,14 @@ export class TableComponent implements OnInit {
         error: (error:any) => this.toastr.error(error, 'Error')
       });
     }
+  }
+
+  getCardNumbers(): void {
+    let count = new Array;
+    count.push(this.pokas.filter(poka => poka.status == 0).length)
+    count.push(this.pokas.filter(poka => poka.status == 1).length)
+
+    this.pokaCountEmitter.emit(count);
   }
 
   

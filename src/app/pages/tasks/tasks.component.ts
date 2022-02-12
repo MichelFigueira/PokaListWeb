@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TasksComponent implements OnInit {
 
-  constructor() { }
+  count;
+  
+  constructor() {}
+  ngOnInit(): void {
+  }
 
-  ngOnInit() {
+  pokaCount(event: any): void {
+    this.count = event;
+    this.pokaCountGo();
+  }
+
+  pokaCountGo() {
+    return this.count;
   }
 
 }

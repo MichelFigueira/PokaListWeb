@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cards',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardsComponent implements OnInit {
 
+  @Input() countCards = new Array();
+
   constructor() { }
 
   ngOnInit() {
+    this.countCards = [{0: 1, 1: 0}]
   }
 
 }
