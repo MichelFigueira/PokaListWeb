@@ -1,7 +1,7 @@
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-import { debounceTime, Subject } from 'rxjs';
+import { debounceTime, map, Subject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -27,16 +27,21 @@ export class TableComponent implements OnInit {
   public pagination = {} as Pagination;
   
   termFindChanged: Subject<string> = new Subject<string>();
-
+  
   get fp(): any { return this.form.controls; }
-
+  
   constructor(
     private pokaService: PokaService,
     private toastr: ToastrService,
     private fb: FormBuilder,
     private modalService: NgbModal,
-  ) { }
-
+  ) 
+  {   
+    this.pokaService.newPokaEvent.subscribe(() => {
+        this.getPokas();
+    });
+  }
+  
   ngOnInit(): void {
     this.pagination = { currentPage: 1, itemsPerPage: 10, totalItems: 1} as Pagination;
     this.getPokas();
@@ -45,7 +50,7 @@ export class TableComponent implements OnInit {
 
   getPokas(): void {
     this.pokaService
-      .get(this.pagination.currentPage, this.pagination.itemsPerPage, '')
+    .get(this.pagination.currentPage, this.pagination.itemsPerPage, '')
       .subscribe((paginatedResult: PaginatedResult<Poka[]>) => {
         {
           this.pokas = paginatedResult.result;
@@ -53,29 +58,29 @@ export class TableComponent implements OnInit {
           this.getCardNumbers();
         }
       });
-  }
-
-  public pageChanged(event): void {
-    this.pagination.currentPage = event.page;
+    }
+    
+    public pageChanged(event): void {
+      this.pagination.currentPage = event.page;
     this.getPokas();
   }
 
   public filterPokas(event: any): void {
     if (this.termFindChanged.observers.length === 0) {
       this.termFindChanged
-        .pipe(debounceTime(450))
-        .subscribe((filterBy) => { 
-          this.pokaService.get(
+      .pipe(debounceTime(450))
+      .subscribe((filterBy) => { 
+        this.pokaService.get(
             this.pagination.currentPage, 
             this.pagination.itemsPerPage,
             filterBy
-          ).subscribe((paginatedResult: PaginatedResult<Poka[]>) => {
+            ).subscribe((paginatedResult: PaginatedResult<Poka[]>) => {
               {
                 this.pokas = paginatedResult.result;
                 this.pagination = paginatedResult.pagination;
               }
-          });
-        }
+            });
+          }
       )
     }
     this.termFindChanged.next(event.value);
@@ -94,18 +99,18 @@ export class TableComponent implements OnInit {
       this.pokaService.put(poka.id, poka).subscribe();
       this.toastr.error('Oh No :(');
     }
-
+    
     this.getCardNumbers();
   }
-
+  
   openModal(content, poka: Poka) {
     this.modalReference = this.modalService.open(content,{ centered: true });
-
+    
     if (poka !== null) {
       this.poka = poka;
       this.form.patchValue(this.poka);
     }
-
+    
   }
 
   public validatitonForm(): void {
@@ -115,11 +120,11 @@ export class TableComponent implements OnInit {
       groupId: ['']
     });
   }
-
+  
   cssValidator(field: FormControl | AbstractControl): any {
     return { 'is-invalid': field.errors && field.touched };
   }
-
+  
   savePoka() {
     if (this.form.valid) {
       this.pokaService.put(this.poka.id, this.form.value).subscribe({
@@ -132,14 +137,13 @@ export class TableComponent implements OnInit {
       });
     }
   }
-
+  
   getCardNumbers(): void {
     let count = new Array;
     count.push(this.pokas.filter(poka => poka.status == 0).length)
     count.push(this.pokas.filter(poka => poka.status == 1).length)
-
+    
     this.pokaCountEmitter.emit(count);
   }
-
-  
+    
 }

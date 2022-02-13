@@ -6,7 +6,6 @@ import { PokaService } from 'src/app/services/poka.service';
 import { Poka } from '@app/models/Poka';
 import { MenuItems } from '@app/helpers/menuItems';
 
-
 @Component({
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html'
@@ -50,6 +49,7 @@ export class SidebarMenuComponent implements OnInit {
       this.poka = this.form.value;
       this.pokaService.post(this.poka).subscribe();
       this.resetForm();
+      this.pokaService.pokaEvent();
     }
   }
 
@@ -69,4 +69,5 @@ export class SidebarMenuComponent implements OnInit {
   cssValidator(field: FormControl | AbstractControl): any {
     return { 'is-invalid': field.errors && field.touched };
   }
+
 }
