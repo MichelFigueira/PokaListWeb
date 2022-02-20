@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Poka } from 'src/app/models/Poka';
 import { PokaService } from '@app/services/poka.service';
 import { PaginatedResult, Pagination } from '@app/models/Pagination';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-table',
@@ -36,6 +37,7 @@ export class TableComponent implements OnInit {
     private toastr: ToastrService,
     private fb: FormBuilder,
     private modalService: NgbModal,
+    private translate: TranslateService
   ) 
   {   
     this.pokaService.newPokaEvent.subscribe(() => {
@@ -93,13 +95,17 @@ export class TableComponent implements OnInit {
       poka.dateFinished = new Date();
       poka.status = 1;
       this.pokaService.put(poka.id, poka).subscribe();
-      this.toastr.success('Congratulations!');
+      this.translate.get('TOASTR.CHECKED').subscribe((res: string) => {
+        this.toastr.error(res);
+      });
 
     } else {
       poka.dateFinished = null
       poka.status = 0;
       this.pokaService.put(poka.id, poka).subscribe();
-      this.toastr.error('Oh No :(');
+      this.translate.get('TOASTR.UNCHECKED').subscribe((res: string) => {
+        this.toastr.error(res);
+      });
     }
     
     this.getCardNumbers();
@@ -135,7 +141,11 @@ export class TableComponent implements OnInit {
           this.modalReference.close();
           this.getPokas();
         },
-        error: (error:any) => this.toastr.error(error, 'Error')
+        error: (error:any) => {
+            this.translate.get('TOASTR.ERROR').subscribe((res: string) => {
+            this.toastr.error(error, res);
+          });
+        }
       });
     }
   }

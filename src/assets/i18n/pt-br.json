@@ -51,7 +51,8 @@
         "ABOUTME_PLACEHOLDER": "Algumas palavras sobre você ...",
         "CHANGEPASSWORD": "Trocar de Senha",
         "SAVEPROFILE": "Salvar Perfil",
-        "CONNECTLOVE": "Conectar com seu amor"
+        "CONNECTLOVE": "Conectar com seu amor",
+        "COMINGSOON": "Em Breve"
     },
     "ACCESS": {
         "SOCIALSIGNIN": "Entrar com",
@@ -76,5 +77,10 @@
         "PASSCHAR": "Senha deve possuir mais que 6 caracteres",
         "PASSMATCH": "Senhas não conferem",
         "CONFIRMPASS": "Confirmação da Senha é obrigatório"
+    },
+    "TOASTR": {
+        "CHECKED": "Parabéns!",
+        "UNCHECKED": "Ah Não :(",
+        "ERROR": "Erro"
     }
 }
