@@ -10,7 +10,7 @@
     <div class="col-lg-5 col-md-7">
       <div class="card bg-secondary shadow border-0">
         <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
+          <div class="text-muted text-center mt-2 mb-3"><small>{{'ACCESS.SOCIALSIGNIN' | translate}}</small></div>
           <div class="btn-wrapper text-center">
             <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"></span>
@@ -24,7 +24,7 @@
         </div>
         <div class="card-body px-lg-5 py-lg-5">
           <div class="text-center text-muted mb-4">
-            <small>Or sign in with credentials</small>
+            <small>{{'ACCESS.DEFAULTSIGNIN' | translate}}</small>
           </div>
           <form [formGroup]="form" (ngSubmit)="login()">
             <div class="form-group mb-3">
@@ -33,9 +33,9 @@
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
                   <input [(ngModel)]="model.userName" class="form-control" [ngClass]="{ 'is-invalid': f.userName.errors && f.userName.touched }"
-                  formControlName="userName" placeholder="Email" type="email">
-                  <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.required">Email is required</div>
-                  <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.email">Please enter a valid email address</div>
+                  formControlName="userName" placeholder="{{'DEFAULT.EMAIL' | translate}}" type="email">
+                  <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.required">{{'VALIDATIONS.EMAIL' | translate}}</div>
+                  <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.email">{{'VALIDATIONS.EMAILINVALID' | translate}}</div>
               </div>
             </div>
             <div class="form-group">
@@ -44,29 +44,29 @@
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
                   <input [(ngModel)]="model.password" class="form-control" [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched }"
-                  formControlName="password" placeholder="Password" type="password">
-                  <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.required">Password is required</div>
-                  <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.minlength">Password must be at least 6 characters</div>
+                  formControlName="password" placeholder="{{'DEFAULT.PASSWORD' | translate}}" type="password">
+                  <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.required">{{'VALIDATIONS.PASS' | translate}}</div>
+                  <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.minlength">{{'VALIDATIONS.PASSCHAR' | translate}}</div>
               </div>
             </div>
             <div class="custom-control custom-control-alternative custom-checkbox">
               <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
               <label class="custom-control-label" for=" customCheckLogin">
-                <span class="text-muted">Remember me</span>
+                <span class="text-muted">{{'ACCESS.REMEMBER' | translate}}</span>
               </label>
             </div>
             <div class="text-center">
-              <button type="submit" [disabled]="!form.valid" class="btn btn-primary my-4">Sign in</button>
+              <button type="submit" [disabled]="!form.valid" class="btn btn-primary my-4">{{'ACCESS.SIGNIN' | translate}}</button>
             </div>
           </form>
         </div>
       </div>
       <div class="row mt-3">
         <div class="col-6">
-          <a href="javascript:void(0)" class="text-light"><small>Forgot password?</small></a>
+          <a href="javascript:void(0)" class="text-light"><small>{{'ACCESS.FORGOTPASS' | translate}}</small></a>
         </div>
         <div class="col-6 text-right">
-          <a [routerLink]="['/register']" class="text-light"><small>Create new account</small></a>
+          <a [routerLink]="['/register']" class="text-light"><small>{{'ACCESS.CREATENEWACC' | translate}}</small></a>
         </div>
       </div>
     </div>

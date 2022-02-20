@@ -1,0 +1,80 @@
+{
+    "DEFAULT": {
+        "TASKS": "Tasks",
+        "PROFILE": "Profile",
+        "CANCEL": "Cancel",
+        "SAVE": "Save",
+        "CREATE": "Create",
+        "EMAIL": "Email",
+        "NAME": "Name",
+        "PASSWORD": "Password",
+        "CONFIRMPASS": "Confirm Password"
+    },
+    "NAVBAR": {
+        "HOME": "Home",
+        "REGISTER": "Register",
+        "LOGIN": "Login",
+        "WELCOME": "Welcome",
+        "MYPROFILE": "My Profile",
+        "SUPPORT": "Support",
+        "LOGOUT": "Logout",
+        "SELECTLANGUAGE": "Change Language"
+    },
+    "SIDEBAR": {
+        "ADMIN": "Admin",
+        "ADDPOKA": "Adicionar Poka"
+    },
+    "FOOTER": {
+        "ABOUTUS": "About Us"
+    },
+    "TASKS": {
+        "PENDING": "Pending",
+        "COMPLETED": "Completed",
+        "SEARCH": "Search by Title or Group Name",
+        "EDIT": "Editar",
+        "TITLE": "Title",
+        "GROUP": "Group",
+        "STATUS": "Status",
+        "FINISHED": "Finished",
+        "SUGGESTION": "Send as a Suggestion to the team"
+    },
+    "PROFILE": {
+        "HELLO": "Hello",
+        "HELLOMSG": "This is your profile page.",
+        "MYACCOUNT": "My Account",
+        "USERINFO": "User Information",
+        "ADDRESS": "Address",
+        "CITY": "City",
+        "COUNTRY": "Country",
+        "POSTALCODE": "Postal code",
+        "ABOUTME": "About me",
+        "ABOUTME_PLACEHOLDER": "A few words about you ...",
+        "CHANGEPASSWORD": "Change Password",
+        "SAVEPROFILE": "Save Profile",
+        "CONNECTLOVE": "Connect with your love"
+    },
+    "ACCESS": {
+        "SOCIALSIGNIN": "Sign in with",
+        "DEFAULTSIGNIN": "Or sign in with credentials",
+        "REMEMBER": "Remember me",
+        "SIGNIN": "Sign In",
+        "FORGOTPASS": "Forgot password?",
+        "SOCIALSIGNUP": "Sign up with",
+        "DEFAULTSIGNUP": "Or sign up with credentials",
+        "CREATENEWACC": "Create new account",
+        "STANDARDPOKAS": "Create with Standard Pokas!",
+        "IAGREE": "I agree with the",
+        "PRIVACY": "Privacy Policy",
+        "CREATEACC": "Create Account"
+    },
+    "VALIDATIONS": {
+        "TITLE": "Title is required",
+        "NAME": "Name is required",
+        "EMAIL": "Email is required",
+        "EMAILINVALID": "Please enter a valid email address",
+        "PASS": "Password is required",
+        "PASSCHAR": "Password must be at least 6 characters",
+        "PASSMATCH": "Passwords do not match",
+        "CONFIRMPASS": "Confirm Password is required"
+    }
+}

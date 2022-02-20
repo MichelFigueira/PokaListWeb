@@ -2,96 +2,96 @@
   <div class="card-header bg-white border-0">
     <div class="row align-items-center">
       <div class="col-8">
-        <h3 class="mb-0">My account</h3>
+        <h3 class="mb-0">{{'PROFILE.MYACCOUNT' | translate}}</h3>
       </div>
     </div>
   </div>
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <h6 class="heading-small text-muted mb-4">User information</h6>
+      <h6 class="heading-small text-muted mb-4">{{'PROFILE.USERINFO' | translate}}</h6>
       <div class="pl-lg-4">
         <div class="row">
           <div class="col-lg-6">
             <div class="form-group">
-              <label class="form-control-label" for="userName">Email address</label>
+              <label class="form-control-label" for="userName">{{'DEFAULT.EMAIL' | translate}}</label>
               <input type="email" id="userName" readonly class="form-control form-control-alternative"
-              [ngClass]="cssValidator(f.userName)" formControlName="userName" placeholder="your@email.com">
-              <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.required">Email is required</div>
-              <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.email">Please enter a valid email address</div>
+              [ngClass]="cssValidator(f.userName)" formControlName="userName" placeholder="{{'DEFAULT.EMAIL' | translate}}">
+              <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.required">{{'VALIDATIONS.EMAIL' | translate}}</div>
+              <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.email">{{'VALIDATIONS.EMAILINVALID' | translate}}</div>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group">
-              <label class="form-control-label" for="name">Name</label>
+              <label class="form-control-label" for="name">{{'DEFAULT.NAME' | translate}}</label>
               <input type="text" id="name" class="form-control form-control-alternative"
-              [ngClass]="cssValidator(f.name)" formControlName="name" placeholder="Name">
-              <div class="ml-1 invalid-feedback">Name is required</div>
+              [ngClass]="cssValidator(f.name)" formControlName="name" placeholder="{{'DEFAULT.NAME' | translate}}">
+              <div class="ml-1 invalid-feedback">{{'VALIDATIONS.NAME' | translate}}</div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label class="form-control-label" for="address">Address</label>
-              <input id="address" class="form-control form-control-alternative" formControlName="address" placeholder="Address" type="text">
+              <label class="form-control-label" for="address">{{'PROFILE.ADDRESS' | translate}}</label>
+              <input id="address" class="form-control form-control-alternative" formControlName="address" placeholder="{{'PROFILE.ADDRESS' | translate}}" type="text">
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-4">
             <div class="form-group">
-              <label class="form-control-label" for="city">City</label>
-              <input type="text" id="city" class="form-control form-control-alternative" formControlName="city" placeholder="City">
+              <label class="form-control-label" for="city">{{'PROFILE.CITY' | translate}}</label>
+              <input type="text" id="city" class="form-control form-control-alternative" formControlName="city" placeholder="{{'PROFILE.CITY' | translate}}">
             </div>
           </div>
           <div class="col-lg-4">
             <div class="form-group">
-              <label class="form-control-label" for="country">Country</label>
-              <input type="text" id="country" class="form-control form-control-alternative" formControlName="country" placeholder="Country">
+              <label class="form-control-label" for="country">{{'PROFILE.COUNTRY' | translate}}</label>
+              <input type="text" id="country" class="form-control form-control-alternative" formControlName="country" placeholder="{{'PROFILE.COUNTRY' | translate}}">
             </div>
           </div>
           <div class="col-lg-4">
             <div class="form-group">
-              <label class="form-control-label" for="country">Postal code</label>
-              <input type="number" id="postal-code" class="form-control form-control-alternative" formControlName="postalCode" placeholder="Postal code">
+              <label class="form-control-label" for="country">{{'PROFILE.POSTALCODE' | translate}}</label>
+              <input type="number" id="postal-code" class="form-control form-control-alternative" formControlName="postalCode" placeholder="{{'PROFILE.POSTALCODE' | translate}}">
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label>About Me</label>
-              <textarea rows="4" class="form-control form-control-alternative" formControlName="aboutMe" placeholder="A few words about you ..."></textarea>
+              <label>{{'PROFILE.ABOUTME' | translate}}</label>
+              <textarea rows="4" class="form-control form-control-alternative" formControlName="aboutMe" placeholder="{{'PROFILE.ABOUTME_PLACEHOLDER' | translate}}"></textarea>
             </div>
           </div>
         </div>
       </div>
       <hr class="my-4" />
-      <h6 class="heading-small text-muted mb-4">Change Password</h6>
+      <h6 class="heading-small text-muted mb-4">{{'PROFILE.CHANGEPASSWORD' | translate}}</h6>
       <div class="pl-lg-4">
         <div class="row">
           <div class="col-lg-6">
             <div class="form-group">
-              <label class="form-control-label" for="password">Password</label>
+              <label class="form-control-label" for="password">{{'DEFAULT.PASSWORD' | translate}}</label>
               <input type="password" id="password" class="form-control form-control-alternative"
-              [ngClass]="cssValidator(f.password)" formControlName="password" placeholder="Password">
-              <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.required">Password is required</div>
-              <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.minlength">Password must be at least 6 characters</div>
+              [ngClass]="cssValidator(f.password)" formControlName="password" placeholder="{{'DEFAULT.PASSWORD' | translate}}">
+              <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.required">{{'VALIDATIONS.PASS' | translate}}</div>
+              <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.minlength">{{'VALIDATIONS.PASSCHAR' | translate}}</div>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="form-group">
-              <label class="form-control-label" for="confirmPassword">Confirm Password</label>
+              <label class="form-control-label" for="confirmPassword">{{'DEFAULT.CONFIRMPASS' | translate}}</label>
               <input type="password" id="confirmPassword" class="form-control form-control-alternative"
-              [ngClass]="cssValidator(f.confirmPassword)" formControlName="confirmPassword" placeholder="Confirm Password">
-              <div class="ml-1 invalid-feedback" *ngIf="f.confirmPassword.errors?.required">Confirm Password is required</div>
-              <div class="ml-1 invalid-feedback" *ngIf="f.confirmPassword.errors?.mustMatch">Passwords do not match</div>
+              [ngClass]="cssValidator(f.confirmPassword)" formControlName="confirmPassword" placeholder="{{'DEFAULT.CONFIRMPASS' | translate}}">
+              <div class="ml-1 invalid-feedback" *ngIf="f.confirmPassword.errors?.required">{{'VALIDATIONS.CONFIRMPASS' | translate}}</div>
+              <div class="ml-1 invalid-feedback" *ngIf="f.confirmPassword.errors?.mustMatch">{{'VALIDATIONS.PASSMATCH' | translate}}</div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-12 text-right">
-      <button type="submit" class="btn btn-success">Save Profile</button>
+      <button type="submit" class="btn btn-success">{{'PROFILE.SAVEPROFILE' | translate}}</button>
     </div>
     </form>
   </div>

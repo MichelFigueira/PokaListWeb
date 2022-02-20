@@ -1,0 +1,11 @@
+<li class="nav-item" ngbDropdown placement="bottom-right">
+  <a class="nav-link nav-link-icon" role="button" ngbDropdownToggle>
+    <i class="ni ni-world"></i>
+  </a>
+  <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+    <div class=" dropdown-header noti-title">
+      <h6 class="text-overflow m-0">{{'NAVBAR.SELECTLANGUAGE' | translate}}</h6>
+    </div>
+    <a class="dropdown-item" (click)="changeLang(langs.id)" *ngFor="let langs of availableLangs;">{{langs.label}}</a>
+  </div>
+</li>

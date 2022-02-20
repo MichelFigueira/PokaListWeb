@@ -12,6 +12,7 @@ import { TasksRoutingModule } from './tasks.routing';
 import { TableComponent } from './table/table.component';
 import { CardsComponent } from './cards/cards.component';
 import { TasksComponent } from './tasks.component';
+import { SharedModule } from '@app/shared/shared.module';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { TasksComponent } from './tasks.component';
     NgbModule,
     RouterModule,
     TasksRoutingModule,
+    SharedModule,
     PaginationModule.forRoot()
   ],
   providers: [],

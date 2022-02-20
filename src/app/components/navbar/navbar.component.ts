@@ -1,10 +1,11 @@
+import { DomSanitizer } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { UserService } from '@app/services/user.service';
 import { MenuItems } from '@app/helpers/menuItems';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Languages } from '@app/helpers/Languages';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,8 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
+  public lang;
 
   public focus;
   public listTitles: any[];
@@ -25,6 +28,8 @@ export class NavbarComponent implements OnInit {
   ) { this.location = location; }
 
   ngOnInit() {
+    this.lang = localStorage.getItem('lang') || 'en'
+    
     this.listTitles = MenuItems.filter(listTitle => listTitle);
   }
 
@@ -42,16 +47,22 @@ export class NavbarComponent implements OnInit {
 
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
+    
     if(titlee.charAt(0) === '#'){
         titlee = titlee.slice( 1 );
     }
 
     for(var item = 0; item < this.listTitles.length; item++){
         if(this.listTitles[item].path === titlee){
+            if(titlee === '/tasks') {
+              return this.lang == 'en' ? "TASKS" : "TAREFAS"
+            } else if (titlee === '/profile') {
+              return this.lang == 'en' ? "PROFILE" : "PERFIL"
+            }
+
             return this.listTitles[item].title;
         }
     }
-    return '';
   }
 
 }

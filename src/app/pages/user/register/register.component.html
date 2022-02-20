@@ -10,7 +10,7 @@
     <div class="col-lg-5 col-md-7">
       <div class="card bg-secondary shadow border-0">
         <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-3"><small>Sign up with</small></div>
+          <div class="text-muted text-center mt-2 mb-3"><small>{{'ACCESS.SOCIALSIGNUP' | translate}}</small></div>
           <div class="btn-wrapper text-center">
             <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon"><img src="assets/img/icons/common/github.svg"></span>
@@ -23,8 +23,8 @@
           </div>
         </div>
         <div class="card-body px-lg-5 py-lg-5">
-          <div class="text-center text-muted mb-4">
-            <small>Or sign up with credentials</small>
+          <div class="text-center text-muted mb-2">
+            <small>{{'ACCESS.DEFAULTSIGNUP' | translate}}</small>
           </div>
           <form [formGroup]="form" (ngSubmit)="register()">
             <div class="form-group mb-3">
@@ -33,8 +33,8 @@
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                 </div>
                 <input class="form-control" [ngClass]="{ 'is-invalid': f.name.errors && f.name.touched }"
-                formControlName="name" placeholder="Name" type="name">
-                <div class="ml-1 invalid-feedback" *ngIf="f.name.errors?.required">Name is required</div>
+                formControlName="name" placeholder="{{'DEFAULT.NAME' | translate}}" type="name">
+                <div class="ml-1 invalid-feedback" *ngIf="f.name.errors?.required">{{'VALIDATIONS.NAME' | translate}}</div>
               </div>
             </div>
             <div class="form-group">
@@ -43,9 +43,9 @@
                   <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                 </div>
                 <input class="form-control" [ngClass]="{ 'is-invalid': f.userName.errors && f.userName.touched }"
-                formControlName="userName" placeholder="Email" type="email">
-                <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.required">Email is required</div>
-                <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.email">Please enter a valid email address</div>
+                formControlName="userName" placeholder="{{'DEFAULT.EMAIL' | translate}}" type="email">
+                <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.required">{{'VALIDATIONS.EMAIL' | translate}}</div>
+                <div class="ml-1 invalid-feedback" *ngIf="f.userName.errors?.email">{{'VALIDATIONS.EMAILINVALID' | translate}}</div>
               </div>
             </div>
             <div class="form-group">
@@ -54,9 +54,9 @@
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
                 <input class="form-control" [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched }"
-                formControlName="password" placeholder="Password" type="password">
-                <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.required">Password is required</div>
-                <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.minlength">Password must be at least 6 characters</div>
+                formControlName="password" placeholder="{{'DEFAULT.PASSWORD' | translate}}" type="password">
+                <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.required">{{'VALIDATIONS.PASS' | translate}}</div>
+                <div class="ml-1 invalid-feedback" *ngIf="f.password.errors?.minlength">{{'VALIDATIONS.PASSCHAR' | translate}}</div>
               </div>
             </div>
             <div class="form-group">
@@ -65,9 +65,9 @@
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
                 <input class="form-control" [ngClass]="{ 'is-invalid': f.confirmPassword.errors && f.confirmPassword.touched }"
-                formControlName="confirmPassword" placeholder="Confirm Password" type="password">
-                <div class="ml-1 invalid-feedback" *ngIf="f.confirmPassword.errors?.required">Confirm Password is required</div>
-                <div class="ml-1 invalid-feedback" *ngIf="f.confirmPassword.errors?.mustMatch">Passwords do not match</div>
+                formControlName="confirmPassword" placeholder="{{'DEFAULT.CONFIRMPASS' | translate}}" type="password">
+                <div class="ml-1 invalid-feedback" *ngIf="f.confirmPassword.errors?.required">{{'VALIDATIONS.CONFIRMPASS' | translate}}</div>
+                <div class="ml-1 invalid-feedback" *ngIf="f.confirmPassword.errors?.mustMatch">{{'VALIDATIONS.PASSMATCH' | translate}}</div>
               </div>
             </div>
             <!-- <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div> -->
@@ -76,19 +76,19 @@
                 <div class="custom-control custom-control-alternative custom-checkbox mb-2">
                   <input formControlName="defaultData" class="custom-control-input" id="defaultDataCheck" type="checkbox">
                   <label class="custom-control-label" for="defaultDataCheck">
-                    <span class="text-muted">Create with Standard Pokas!</span>
+                    <span class="text-muted">{{'ACCESS.STANDARDPOKAS' | translate}}</span>
                   </label>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
                   <input formControlName="privacyPolicy" class="custom-control-input" id="privacyPolicyCheck" type="checkbox">
                   <label class="custom-control-label" for="privacyPolicyCheck">
-                    <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
+                    <span class="text-muted">{{'ACCESS.IAGREE' | translate}} <a href="#!">{{'ACCESS.PRIVACY' | translate}}</a></span>
                   </label>
                 </div>
               </div>
             </div>
             <div class="text-center">
-              <button type="submit" [disabled]="!form.valid" class="btn btn-primary mt-4">Create account</button>
+              <button type="submit" [disabled]="!form.valid" class="btn btn-primary mt-4">{{'ACCESS.CREATEACC' | translate}}</button>
             </div>
           </form>
         </div>

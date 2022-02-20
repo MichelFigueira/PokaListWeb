@@ -6,6 +6,7 @@ import { AuthLayoutRoutes } from './auth-layout.routing';
 
 import { LoginComponent } from '../../pages/user/login/login.component';
 import { RegisterComponent } from '../../pages/user/register/register.component';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -15,7 +16,8 @@ import { RegisterComponent } from '../../pages/user/register/register.component'
     CommonModule,
     RouterModule.forChild(AuthLayoutRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ]
 })
 export class AuthLayoutModule { }

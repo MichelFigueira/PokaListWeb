@@ -12,6 +12,7 @@ import { ProfileComponent } from '@app/pages/user/profile/profile.component';
 import { ProfileCardComponent } from '@app/pages/user/profile/profile-card/profile-card.component';
 import { ProfileDetailsComponent } from '@app/pages/user/profile/profile-details/profile-details.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SharedModule,
     NgbModule,
     ClipboardModule,
     ImageCropperModule

@@ -1,0 +1,19 @@
+<ul class="navbar-nav align-items-center d-none d-md-flex">
+  <li class="nav-item" ngbDropdown placement="bottom-right">
+    <a class="nav-link pr-0" role="button" ngbDropdownToggle>
+      <div class="media align-items-center">
+        <span class="flag-select">
+          <img class="w-full" [src]="'../../../assets/img/flags/' + this.lang +'.svg'">
+        </span>
+      </div>
+    </a>
+    <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+      <a (click)="changeLang(langs.id)" class="dropdown-item" *ngFor="let langs of availableLangs;" >
+        <span class="flex items-center">
+          <img class="w-full" [src]="'../../../assets/img/flags/' + langs.id +'.svg'">
+          <span class="ml-3">{{langs.label}}</span>
+        </span>
+      </a>
+    </div>
+  </li>
+</ul>

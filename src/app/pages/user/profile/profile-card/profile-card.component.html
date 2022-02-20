@@ -17,7 +17,7 @@
       <div class="col">
         <div class="card-profile-stats d-flex justify-content-center mt-md-5">
           <div>
-            <a href="javascript:void(0)" class="btn btn-sm btn-warning">Connect with your love ❤️</a>
+            <a href="javascript:void(0)" class="btn btn-sm btn-warning">{{'PROFILE.CONNECTLOVE' | translate}} ❤️</a>
           </div>
         </div>
       </div>
@@ -50,8 +50,8 @@
       (loadImageFailed)="loadImageFailed()">
     </image-cropper>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" (click)="d(croppedImage=null)">Cancel</button>
-      <button type="button" class="btn btn-success" (click)="uploadImage()">Save Photo</button>
+      <button type="button" class="btn btn-default" (click)="d(croppedImage=null)">{{'DEFAULT.CANCEL' | translate}}</button>
+      <button type="button" class="btn btn-success" (click)="uploadImage()">{{'DEFAULT.SAVE' | translate}}</button>
     </div>
   </div>
 </ng-template>

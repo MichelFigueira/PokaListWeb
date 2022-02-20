@@ -7,12 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth-layout.component.scss']
 })
 export class AuthLayoutComponent implements OnInit, OnDestroy {
-  test: Date = new Date();
+  
+  lang;
   public isCollapsed = true;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.lang = localStorage.getItem('lang') || 'en'
+
     var html = document.getElementsByTagName("html")[0];
     html.classList.add("auth-layout");
     var body = document.getElementsByTagName("body")[0];
@@ -28,4 +31,10 @@ export class AuthLayoutComponent implements OnInit, OnDestroy {
     var body = document.getElementsByTagName("body")[0];
     body.classList.remove("bg-default");
   }
+
+  changeLang(lang) {
+    localStorage.setItem('lang', lang);
+    window.location.reload();
+  }
+
 }

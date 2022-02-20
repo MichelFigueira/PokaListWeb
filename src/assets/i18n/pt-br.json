@@ -1,0 +1,80 @@
+{
+    "DEFAULT": {
+        "TASKS": "Tarefas",
+        "PROFILE": "Perfil",
+        "CANCEL": "Cancelar",
+        "SAVE": "Salvar",
+        "CREATE": "Criar",
+        "EMAIL": "Email",
+        "NAME": "Nome",
+        "PASSWORD": "Senha",
+        "CONFIRMPASS": "Confirmar Senha"
+    },
+    "NAVBAR": {
+        "HOME": "Home",
+        "REGISTER": "Cadastrar",
+        "WELCOME": "Bem Vindo",
+        "LOGIN": "Entrar",
+        "MYPROFILE": "Meu Perfil",
+        "SUPPORT": "Suporte",
+        "LOGOUT": "Sair",
+        "SELECTLANGUAGE": "Trocar de Idioma"
+    },
+    "SIDEBAR": {
+        "ADMIN": "Admin",
+        "ADDPOKA": "Adicionar Poka"
+    },
+    "FOOTER": {
+        "ABOUTUS": "Sobre Nós"
+    },
+    "TASKS": {
+        "PENDING": "Pendente",
+        "COMPLETED": "Completado",
+        "EDIT": "Editar",
+        "SEARCH": "Buscar por Título ou Grupo",
+        "TITLE": "Título",
+        "GROUP": "Grupo",
+        "STATUS": "Status",
+        "FINISHED": "Completado em",
+        "SUGGESTION": "Enviar como sugestão para a equipe"
+    },
+    "PROFILE": {
+        "HELLO": "Olá",
+        "HELLOMSG": "Essa é sua pagina de Perfil.",
+        "MYACCOUNT": "Minha Conta",
+        "USERINFO": "Informações do Usuário",
+        "ADDRESS": "Endereço",
+        "CITY": "Cidade",
+        "COUNTRY": "País",
+        "POSTALCODE": "CEP",
+        "ABOUTME": "Sobre mim",
+        "ABOUTME_PLACEHOLDER": "Algumas palavras sobre você ...",
+        "CHANGEPASSWORD": "Trocar de Senha",
+        "SAVEPROFILE": "Salvar Perfil",
+        "CONNECTLOVE": "Conectar com seu amor"
+    },
+    "ACCESS": {
+        "SOCIALSIGNIN": "Entrar com",
+        "DEFAULTSIGNIN": "Ou acesse utilizando seu e-mail e senha",
+        "REMEMBER": "Lembrar-me",
+        "SIGNIN": "Entrar",
+        "FORGOTPASS": "Esqueceu sua senha?",
+        "SOCIALSIGNUP": "Cadastrar com",
+        "DEFAULTSIGNUP": "Ou cadastre-se",
+        "CREATENEWACC": "Criar nova conta",
+        "STANDARDPOKAS": "Criar com tarefas sugeridas!",
+        "IAGREE": "Eu aceito a",
+        "PRIVACY": "Política de Privacidade",
+        "CREATEACC": "Criar Conta"
+    },
+    "VALIDATIONS": {
+        "TITLE": "Título é obrigatório",
+        "NAME": "Nome é obrigatório",
+        "EMAIL": "Email é obrigatório",
+        "EMAILINVALID": "Informe um e-mail válido",
+        "PASS": "Senha é obrigatória",
+        "PASSCHAR": "Senha deve possuir mais que 6 caracteres",
+        "PASSMATCH": "Senhas não conferem",
+        "CONFIRMPASS": "Confirmação da Senha é obrigatório"
+    }
+}

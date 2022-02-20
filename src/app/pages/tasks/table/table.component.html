@@ -8,7 +8,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
               </div> 
-              <input class="form-control" placeholder="Search by Title or Group Name" type="text" (input)="filterPokas($event.target)" (focus)="focus=true" (blur)="focus=false">
+              <input class="form-control" placeholder="{{'TASKS.SEARCH' | translate}}" type="text" (input)="filterPokas($event.target)" (focus)="focus=true" (blur)="focus=false">
             </div>
           </div>
         </div>
@@ -16,10 +16,10 @@
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Group</th>
-                <th scope="col">Status</th>
-                <th scope="col">Finished</th>
+                <th scope="col">{{'TASKS.TITLE' | translate}}</th>
+                <th scope="col">{{'TASKS.GROUP' | translate}}</th>
+                <th scope="col">{{'TASKS.STATUS' | translate}}</th>
+                <th scope="col">{{'TASKS.FINISHED' | translate}}</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -28,7 +28,8 @@
                 <th scope="row">
                   <div class="align-items-center mt-2">
                     <label class="customcheck">
-                      {{poka.title}}
+                      <span *ngIf="lang === 'en'">{{poka.title}}</span>
+                      <span *ngIf="lang === 'pt-br'">{{poka.titlePtBr}}</span>
                       <input type="checkbox" (click)="checkPoka(poka, $event.target.checked)" *ngIf="poka.status === 0">
                       <input type="checkbox" (click)="checkPoka(poka, $event.target.checked)" *ngIf="poka.status === 1" checked>
                       <span class="checkmark"></span>
@@ -37,12 +38,13 @@
                 </th>
                 <td>
                   <span class="badge badge-dot mr-4 align-items-center">
-                    {{poka.group.title}}
+                    <span *ngIf="lang === 'en'">{{poka.group.title}}</span>
+                    <span *ngIf="lang === 'pt-br'">{{poka.group.titlePtBr}}</span>
                   </span>
                 </td>
                 <td>
-                  <span *ngIf="poka.status === 0" class="badge badge-dot mr-4"> <i class="bg-yellow"></i> Pending</span>
-                  <span *ngIf="poka.status === 1" class="badge badge-dot mr-4"> <i class="bg-green"></i> Completed</span>
+                  <span *ngIf="poka.status === 0" class="badge badge-dot mr-4"> <i class="bg-yellow"></i> {{'TASKS.PENDING' | translate}}</span>
+                  <span *ngIf="poka.status === 1" class="badge badge-dot mr-4"> <i class="bg-green"></i> {{'TASKS.COMPLETED' | translate}}</span>
                 </td>
                 <td>
                   <span class="badge badge-dot mr-4 align-items-center">
@@ -84,7 +86,7 @@
   <div class="modal-content">
     <form [formGroup]="form">
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Edit Poka</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'TASKS.EDIT' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="d()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -92,27 +94,21 @@
       <div class="modal-body">
           <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
             <div class="input-group input-group-alternative">
-              <input id="title" class="form-control" placeholder="Title" type="text" (focus)="focus=true" (blur)="focus=false"
+              <input id="title" class="form-control" placeholder="{{'TASKS.TITLE' | translate}}" type="text" (focus)="focus=true" (blur)="focus=false"
               formControlName="title" [ngClass]="cssValidator(fp.title)">
-              <div class="ml-1 invalid-feedback" *ngIf="fp.title.errors?.required">Title is required</div>
-            </div>
-          </div>
-          <div class="form-group" [ngClass]="{'focused':focus1===true}">
-            <div class="input-group input-group-alternative">
-              <input id="description" class="form-control" placeholder="Description" type="text" (focus)="focus1=true" (blur)="focus1=false"
-              formControlName="description">
+              <div class="ml-1 invalid-feedback" *ngIf="fp.title.errors?.required">{{'VALIDATIONS.TITLE' | translate}}</div>
             </div>
           </div>
           <div class="custom-control custom-control-alternative custom-checkbox">
             <input class="custom-control-input" id="suggestionCheck" type="checkbox">
             <label class="custom-control-label" for="suggestionCheck">
-              <span class="ml--3">Send as a Suggestion to the team</span>
+              <span class="ml--3">{{'TASKS.SUGGESTION' | translate}}</span>
             </label>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" (click)="d()">Cancel</button>
-          <button type="button" [disabled]="!form.valid" class="btn btn-success" (click)="savePoka()">Save</button>
+          <button type="button" class="btn btn-default" (click)="d()">{{'DEFAULT.CANCEL' | translate}}</button>
+          <button type="button" [disabled]="!form.valid" class="btn btn-success" (click)="savePoka()">{{'DEFAULT.SAVE' | translate}}</button>
         </div>
     </form>
   </div>

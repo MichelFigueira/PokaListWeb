@@ -18,6 +18,7 @@ export class TableComponent implements OnInit {
 
   @Output() pokaCountEmitter = new EventEmitter();
 
+  public lang;
   focus: any;
   pokas: Poka[];
   poka = {} as Poka;
@@ -43,6 +44,7 @@ export class TableComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    this.lang = localStorage.getItem('lang') || 'en'
     this.pagination = { currentPage: 1, itemsPerPage: 10, totalItems: 1} as Pagination;
     this.getPokas();
     this.validatitonForm();
