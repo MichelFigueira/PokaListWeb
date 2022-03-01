@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -37,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgbModule,
     SharedModule,
     RouterModule,
+    SocialLoginModule,
     AppRoutingModule,
     LoadingBarHttpClientModule,
     TranslateModule.forRoot({
@@ -56,7 +58,23 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   exports: [TranslateModule],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false, 
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('914607640464-c0ndtefeabuqa0uchbvabq6p97rk4n18.apps.googleusercontent.com'),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('4746682708763341')
+          }
+        ],
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [AppComponent]
 })

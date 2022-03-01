@@ -39,9 +39,13 @@ export class NavbarComponent implements OnInit {
   }
 
   public getPhotoURL(imageName: string): string {
-    if (imageName)
+    let socialStorage = JSON.parse(localStorage.getItem('social_auth'));
+
+    if (imageName) 
       return 'data:image/jpg;base64,' + (this.sanitizer.bypassSecurityTrustResourceUrl(imageName) as any).changingThisBreaksApplicationSecurity;
-    else
+    else if (socialStorage.photoUrl) 
+      return socialStorage.photoUrl
+    else 
       return './assets/img/theme/profile-picture.jpg';
   }
 

@@ -9,4 +9,7 @@ export interface UserUpdate {
   aboutMe: string;
   photoBytes: string;
   token: string;
+  socialLogin: boolean;
+  photoURL: string;
+  defaultData: boolean;
 }

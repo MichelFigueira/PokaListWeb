@@ -13,10 +13,13 @@ export class UserService {
 
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
+  user = {} as User;
 
   url = environment.urlAPI + 'user/'
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   public login(model: any): Observable<void> {
     return this.http.post<User>(this.url + 'login', model).pipe(

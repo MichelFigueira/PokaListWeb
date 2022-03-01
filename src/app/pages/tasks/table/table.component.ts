@@ -96,7 +96,7 @@ export class TableComponent implements OnInit {
       poka.status = 1;
       this.pokaService.put(poka.id, poka).subscribe();
       this.translate.get('TOASTR.CHECKED').subscribe((res: string) => {
-        this.toastr.error(res);
+        this.toastr.success(res);
       });
 
     } else {

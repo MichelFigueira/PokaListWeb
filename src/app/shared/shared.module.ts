@@ -5,7 +5,6 @@ import { LanguageComponent } from './components/language/language.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatMenuModule } from '@angular/material/menu';
 import { LanguageSmallComponent } from './components/language-small/language-small.component';
 
 @NgModule({
@@ -19,8 +18,7 @@ import { LanguageSmallComponent } from './components/language-small/language-sma
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule,
-    MatMenuModule,
+    TranslateModule
   ],
   exports: [
     TranslateModule,

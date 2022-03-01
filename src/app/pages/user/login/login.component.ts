@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { UserService } from '@app/services/user.service';
 import { UserLogin } from '@app/models/UserLogin';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private socialAuthService: SocialAuthService
   ) { }
 
   ngOnInit() {
@@ -43,10 +45,27 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.model).subscribe({
       next: () => { this.router.navigateByUrl('/tasks'); },
       error: (error: any) => {
-        if (error.status == 401)
+        if (error.status == 401 && this.model.socialLogin == false)
           this.toastr.error('Invalid Email or Password!');
         else
           console.error(error);
+      }
+    });
+  }
+
+  loginWithSocial(socialName: string) {
+    if (socialName === 'google') { this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID) }
+    if (socialName === 'facebook') { this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID) }
+
+    this.socialAuthService.authState.subscribe({
+      next: (response) => { 
+        this.model.userName = response.email;
+        this.model.password = response.id;
+
+        this.login();
+      },
+      error: (error: any) => {
+        console.error(error);
       }
     });
   }

@@ -11,10 +11,13 @@
       <app-language-small></app-language-small>
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link" role="button" ngbDropdownToggle>
-          <div class="media align-items-center">
+          <div class="media align-items-center" *ngIf="(userService.currentUser$ | async) as user">
             <span class="avatar avatar-sm rounded-circle">
-              <img alt="Image placeholder" src="./assets/img/theme/profile-picture.jpg">
+              <img [src]="getPhotoURL(user.photoBytes)">
             </span>
+            <div class="media-body ml-2 d-none d-lg-block" >
+              <span class="mb-0 text-sm  font-weight-bold">{{ user.name | titlecase }}</span>
+            </div>
           </div>
         </a>
         <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>

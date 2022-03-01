@@ -5,6 +5,7 @@ import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@ang
 import { ValidatorField } from '@app/helpers/ValidatorField';
 import { UserService } from '@app/services/user.service';
 import { User } from '@app/models/User';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private socialAuthService: SocialAuthService
   ) { }
 
   ngOnInit() {
@@ -56,4 +58,27 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  registerWithSocial(socialName: string) {
+    if (socialName === 'google') { this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID) }
+    if (socialName === 'facebook') { this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID) }
+
+    this.socialAuthService.authState.subscribe({
+      next: (response) => { 
+        this.user.name = response.name;
+        this.user.userName = response.email;
+        this.user.photoURL = response.photoUrl;
+        this.user.password = response.id;
+        this.user.socialLogin = true;
+        this.user.defaultData = this.form.value.defaultData;
+        
+        this.userService.register(this.user).subscribe({
+          complete: () => this.router.navigateByUrl('/tasks'),
+          error: (error:any) => console.error(error)
+        });
+      },
+      error: (error: any) => {
+        console.error(error);
+      }
+    });
+  }
 }
