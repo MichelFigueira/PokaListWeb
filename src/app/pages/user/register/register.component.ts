@@ -5,7 +5,9 @@ import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@ang
 import { ValidatorField } from '@app/helpers/ValidatorField';
 import { UserService } from '@app/services/user.service';
 import { User } from '@app/models/User';
-import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -25,7 +27,9 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private socialAuthService: SocialAuthService
+    private socialAuthService: SocialAuthService,
+    private toastr: ToastrService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -54,7 +58,13 @@ export class RegisterComponent implements OnInit {
     this.user = { ...this.form.value}
     this.userService.register(this.user).subscribe({
       complete: () => this.router.navigateByUrl('/tasks'),
-      error: (error:any) => console.error(error)
+      error: (error:any) => {
+        if (error.status == 400)
+        this.translate.get('TOASTR.USER_EXIST').subscribe((res: string) => {
+          this.toastr.error(res);
+        })
+        else console.log(error);
+      }
     });
   }
 
@@ -73,7 +83,13 @@ export class RegisterComponent implements OnInit {
         
         this.userService.register(this.user).subscribe({
           complete: () => this.router.navigateByUrl('/tasks'),
-          error: (error:any) => console.error(error)
+          error: (error:any) => {
+            if (error.status == 400)
+            this.translate.get('TOASTR.USER_EXIST').subscribe((res: string) => {
+              this.toastr.error(res);
+            })
+            else console.log(error);
+          }
         });
       },
       error: (error: any) => {

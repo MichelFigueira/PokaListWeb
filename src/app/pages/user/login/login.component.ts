@@ -45,7 +45,8 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.model).subscribe({
       next: () => { this.router.navigateByUrl('/tasks'); },
       error: (error: any) => {
-        if (error.status == 401 && this.model.socialLogin == false)
+        console.log(this.model);
+        if (error.status == 401)
           this.toastr.error('Invalid Email or Password!');
         else
           console.error(error);

@@ -81,6 +81,7 @@
     "TOASTR": {
         "CHECKED": "Parabéns!",
         "UNCHECKED": "Ah Não :(",
-        "ERROR": "Erro"
+        "ERROR": "Erro",
+        "USER_EXIST": "Usuário já existe!"
     }
 }
