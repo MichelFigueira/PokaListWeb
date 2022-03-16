@@ -56,7 +56,7 @@ export class SidebarMenuComponent implements OnInit {
 
   public validatitonForm(): void {
     this.form = this.fb.group({
-      title: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(5)]],
       description: [''],
       groupId: [1]
     });
