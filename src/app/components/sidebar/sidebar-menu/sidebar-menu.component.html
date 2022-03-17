@@ -29,15 +29,19 @@
       <div class="modal-body">
           <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
             <div class="input-group input-group-alternative">
-              <input id="title" class="form-control" placeholder="{{'TASKS.TITLE' | translate}}" type="text" (focus)="focus=true" (blur)="focus=false"
+              <label class="input-group-text" for="title">{{'TASKS.TITLE' | translate}}:</label>
+              <input id="title" class="form-control" type="text" (focus)="focus=true" (blur)="focus=false"
               formControlName="title" [ngClass]="cssValidator(fp.title)">
               <div class="ml-1 invalid-feedback" *ngIf="fp.title.errors?.required">{{'VALIDATIONS.TITLE' | translate}}</div>
             </div>
           </div>
           <div class="form-group" [ngClass]="{'focused':focus1===true}">
             <div class="input-group input-group-alternative">
-              <select class="form-control form-select" id="groupId" formControlName="groupId" hidden>
-                <option value="1">Default Group</option>
+              <label class="input-group-text" for="groupId">{{'TASKS.GROUP' | translate}}:</label>
+              <select class="form-control form-select" id="groupId" formControlName="groupId">
+                <option *ngFor="let group of groups" [value]="group.id">
+                  {{group.title}}
+              </option>
               </select>
             </div>
           </div>

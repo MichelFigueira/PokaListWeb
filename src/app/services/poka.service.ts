@@ -5,6 +5,7 @@ import { BehaviorSubject, map, Observable, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PaginatedResult } from '@app/models/Pagination';
 import { Poka } from '@app/models/Poka';
+import { Group } from '@app/models/Group';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ import { Poka } from '@app/models/Poka';
 export class PokaService {
 
   
-  url = environment.urlAPI + 'pokas/'
+  urlPokas = environment.urlAPI + 'pokas/'
+  urlGroups = environment.urlAPI + 'groups/'
   public newPokaEvent = new BehaviorSubject<string>("call");
 
   
@@ -32,7 +34,7 @@ export class PokaService {
       params = params.append('term', term)
     }
     
-    return this.http.get<Poka[]>(this.url, { observe: 'response', params })
+    return this.http.get<Poka[]>(this.urlPokas, { observe: 'response', params })
     .pipe(
       take(1),
       map((response) => {
@@ -49,15 +51,19 @@ export class PokaService {
       }
       
   getById(id) {
-    return this.http.get<Poka>(this.url + id)
+    return this.http.get<Poka>(this.urlPokas + id)
+  }
+
+  getGroups() {
+    return this.http.get<Group[]>(this.urlGroups);
   }
   
   post(poka: Poka): Observable<Poka> {
-    return this.http.post<Poka>(this.url, poka);
+    return this.http.post<Poka>(this.urlPokas, poka);
   }
   
   put(id: number, poka: Poka) {
-    return this.http.put<Poka>(this.url + id, poka);
+    return this.http.put<Poka>(this.urlPokas + id, poka);
   }
   
   pokaEvent(){

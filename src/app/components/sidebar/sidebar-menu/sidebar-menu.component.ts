@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PokaService } from 'src/app/services/poka.service';
 import { Poka } from '@app/models/Poka';
 import { MenuItems } from '@app/helpers/menuItems';
+import { Group } from '@app/models/Group';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -15,6 +16,7 @@ export class SidebarMenuComponent implements OnInit {
   menuItems: any[];
   adminItems: any[];
   poka = {} as Poka;
+  groups: any[];
   modeModal = 'post';
 
   form: FormGroup;
@@ -35,6 +37,7 @@ export class SidebarMenuComponent implements OnInit {
   }
 
   openModal(content) {
+    this.getGroups();
     this.modalService.open(content,{ centered: true })
       .result.then(
         () => {},
@@ -42,6 +45,12 @@ export class SidebarMenuComponent implements OnInit {
           this.resetForm();
         }
       );
+  }
+
+  getGroups() {
+    this.pokaService.getGroups().subscribe((response) => {
+      this.groups = response;
+    });
   }
 
   newPoka() {
@@ -53,12 +62,11 @@ export class SidebarMenuComponent implements OnInit {
     }
   }
 
-
   public validatitonForm(): void {
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(5)]],
       description: [''],
-      groupId: [1]
+      groupId: ['', Validators.required]
     });
   }
 
