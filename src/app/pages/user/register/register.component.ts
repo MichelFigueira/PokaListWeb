@@ -8,6 +8,7 @@ import { User } from '@app/models/User';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnInit {
 
   user = {} as User;
   form: FormGroup;
+  modalReference: any;
 
   get f(): any {
     return this.form.controls;
@@ -29,6 +31,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private socialAuthService: SocialAuthService,
     private toastr: ToastrService,
+    private modalService: NgbModal,
     private translate: TranslateService
   ) { }
 
@@ -96,5 +99,9 @@ export class RegisterComponent implements OnInit {
         console.error(error);
       }
     });
+  }
+
+  openModal(content) {
+    this.modalReference = this.modalService.open(content,{ size: 'lg' });
   }
 }
